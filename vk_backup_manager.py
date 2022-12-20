@@ -13,7 +13,8 @@ class VKBackupManager:
 
         VK_METHOD = 'method/users.get'
 
-        params = f'user_ids={vk_user}&access_token={self.vk_service_token}&v={self.vk_version}'
+        params = f'user_ids={vk_user}' \
+                 f'&access_token={self.vk_service_token}&v={self.vk_version}'
         response = requests.get(self.vk_host + VK_METHOD + '?' + params)
         json_response = response.json()
         return json_response['response'][0]['id']
@@ -27,8 +28,10 @@ class VKBackupManager:
         else:
             vk_user_id = self.get_user_id_by_name(vk_user)
 
-        params = f'owner_id={vk_user_id}&album_id=profile&extended=1&photo_sizes=1' \
-                 f'&offset=0&count=1000&access_token={self.vk_service_token}&v={self.vk_version}'
+        params = f'owner_id={vk_user_id}' \
+                 f'&album_id=profile&extended=1&photo_sizes=1' \
+                 f'&offset=0&count=1000' \
+                 f'&access_token={self.vk_service_token}&v={self.vk_version}'
 
         response = requests.get(self.vk_host + VK_METHOD + '?' + params)
         json_response = response.json()

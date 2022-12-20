@@ -16,7 +16,8 @@ class YaUploader:
         print('Checking Ya.Disk directory...')
         uri = '/v1/disk/resources'
         path = 'vk_backup'
-        response = requests.put(self.ya_host + uri + '?path=' + path, headers=self.headers)
+        response = requests.put(
+            self.ya_host + uri + '?path=' + path, headers=self.headers)
         if response.status_code not in [200, 201, 409]:
             path = None
             print(response.json()['message'])
@@ -40,7 +41,8 @@ class YaUploader:
 
         response = requests.post(self.ya_host
                                  + uri
-                                 + f"?url={quote(photo_data['link'], safe='')}&path={path}/{file_name}",
+                                 + f"?url={quote(photo_data['link'], safe='')}"
+                                   f"&path={path}/{file_name}",
                                  headers=self.headers)
 
         if response.status_code == 202:
